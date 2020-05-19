@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <h1>Remember this!</h1>
-    <Form />
-    <CardContainer :items="items" />
+    <h1 class="nav-bar">
+      Check <span class="nav-bar-highlight">Yo'</span> Self
+    </h1>
+    <main>
+      <Form />
+      <CardContainer :items="items" />
+    </main>
   </div>
 </template>
 
@@ -26,4 +30,33 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  display: flex;
+}
+
+.nav-bar {
+  background: #1f1e3d;
+  color: white;
+  text-transform: uppercase;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  padding: 0.3em;
+}
+
+.nav-bar-highlight {
+  color: #ffc211;
+}
+</style>
