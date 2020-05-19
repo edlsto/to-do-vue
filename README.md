@@ -1,10 +1,10 @@
-# quarantine-ideabox
+# to-do-vue
 
 > A Vue.js project
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
