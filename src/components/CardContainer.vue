@@ -18,4 +18,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  width: 80%;
+  margin: 2em auto;
+  grid-column-gap: 1em;
+}
+</style>
