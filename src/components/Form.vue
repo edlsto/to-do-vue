@@ -1,4 +1,6 @@
-<template> </template>
+<template>
+  <div class="form">hi</div>
+</template>
 
 <script>
 export default {
@@ -6,4 +8,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.form {
+  background: #587a8a;
+}
+</style>
