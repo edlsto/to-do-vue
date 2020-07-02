@@ -15,5 +15,6 @@ export default {
 <style>
 .card {
   border: 1px solid black;
+  padding: 2em;
 }
 </style>
