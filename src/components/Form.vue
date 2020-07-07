@@ -1,7 +1,7 @@
 <template>
   <div class="form">
-    <div><label>Task Title</label> <input /></div>
-    <div><label>Task Item</label> <input /></div>
+    <div class="form-item"><label>Task Title</label> <input /></div>
+    <div class="form-item"><label>Task Item</label> <input /></div>
   </div>
 </template>
 
@@ -17,5 +17,11 @@ export default {
   flex: 0 1 20%;
   height: 100vh;
   display: block;
+  padding: 2em;
+}
+.form-item {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
