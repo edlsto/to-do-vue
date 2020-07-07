@@ -1,8 +1,11 @@
 <template>
   <div class="card-container">
-    <div v-for="item in items" :key="item.key">
-      <Card :title="item.title" :description="item.description" />
-    </div>
+    <Card
+      v-for="item in items"
+      :key="item.key"
+      :title="item.title"
+      :description="item.description"
+    />
   </div>
 </template>
 
@@ -25,5 +28,6 @@ export default {
   width: 80%;
   margin: 2em;
   grid-column-gap: 1em;
+  height: 100%;
 }
 </style>
