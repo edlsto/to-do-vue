@@ -22,7 +22,15 @@ export default {
   data() {
     return {
       items: [
-        { title: "go to store", description: "get some stuff" },
+        {
+          title: "go to store",
+          description:
+            "get some stuff get some stuff get some stuff get some stuff get some stuff get some stuff get some stuff"
+        },
+        { title: "go somewhere else", description: "get some more stuff" },
+        { title: "go somewhere else", description: "get some more stuff" },
+        { title: "go somewhere else", description: "get some more stuff" },
+        { description: "go somewhere else" },
         { title: "go somewhere else", description: "get some more stuff" }
       ]
     };
@@ -35,6 +43,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
 body,
