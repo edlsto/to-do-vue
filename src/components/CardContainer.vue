@@ -1,11 +1,13 @@
 <template>
-  <div class="card-container">
-    <Card
-      v-for="item in items"
-      :key="item.key"
-      :title="item.title"
-      :description="item.description"
-    />
+  <div class="wrapper">
+    <div class="card-container">
+      <Card
+        v-for="item in items"
+        :key="item.key"
+        :title="item.title"
+        :description="item.description"
+      />
+    </div>
   </div>
 </template>
 
@@ -27,6 +29,9 @@ export default {
   width: 80%;
   padding: 2em;
   grid-column-gap: 1em;
+}
+.wrapper {
   background-color: #f3f6f7;
+  width: 100%;
 }
 </style>
