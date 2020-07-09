@@ -30,7 +30,7 @@ export default {
         { title: "go somewhere else", description: "get some more stuff" },
         { title: "go somewhere else", description: "get some more stuff" },
         { title: "go somewhere else", description: "get some more stuff" },
-        { description: "go somewhere else" },
+        { title: "go somewhere else", description: "go somewhere else" },
         { title: "go somewhere else", description: "get some more stuff" }
       ]
     };
