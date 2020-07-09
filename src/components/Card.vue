@@ -17,4 +17,7 @@ export default {
   border: 1px solid black;
   padding: 2em;
 }
+.title {
+  font-weight: bold;
+}
 </style>
