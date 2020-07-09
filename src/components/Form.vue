@@ -1,7 +1,13 @@
 <template>
   <div class="form">
-    <div class="form-item"><label>Task Title</label> <input /></div>
-    <div class="form-item"><label>Task Item</label> <input /></div>
+    <div class="form-item">
+      <label>Task Title</label> <input class="form-input" />
+    </div>
+    <div class="form-item">
+      <label>Task Item</label> <input class="form-input" />
+    </div>
+    <button class="form-btn">Make Task List</button>
+    <button class="form-btn">Clear All</button>
   </div>
 </template>
 
@@ -21,7 +27,29 @@ export default {
 }
 .form-item {
   margin-bottom: 1em;
-  display: flex;
   justify-content: space-between;
+}
+.form-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  background-color: #1f1f3d;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.form-btn:first-of-type {
+  margin-bottom: 1em;
+}
+.form-input {
+  display: block;
+  width: 100%;
+  outline: none;
+  height: 3em;
+  padding: 0.3em;
 }
 </style>
