@@ -10,7 +10,6 @@
 </template>
 
 <script>
-console.log("hi");
 import Card from "./Card.vue";
 export default {
   components: {
@@ -26,8 +25,8 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   width: 80%;
-  margin: 2em;
+  padding: 2em;
   grid-column-gap: 1em;
-  height: 100%;
+  background-color: #f3f6f7;
 }
 </style>
