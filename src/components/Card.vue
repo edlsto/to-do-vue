@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <div class="title">{{ title }}</div>
+    <img src="../assets/checkbox-active.svg" />
     <div class="description">{{ description }}</div>
   </div>
 </template>
