@@ -19,7 +19,7 @@ export default {
   },
   name: "CardContainer",
   props: ["items"],
-  created() {
+  mounted() {
     this.resizeAllGridItems();
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
           70) /
           (rowHeight + rowGap)
       );
-      item.style.gridRowEnd = `span 15`;
+      item.style.gridRowEnd = `span ${rowSpan}`;
     },
     resizeAllGridItems() {
       var allItems = document.querySelectorAll(".card");
