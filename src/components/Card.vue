@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div :class="!urgent ? 'card' : 'card card-urgent'" :id="id">
     <div class="content">
       <div class="title">{{ title }}</div>
       <div class="items-container">
@@ -7,20 +7,23 @@
           class="item-container"
           v-for="(task, index) in tasks"
           v-bind:key="index"
+          :id="task.id"
         >
           <img
             :src="!task.completed ? completedImg : notCompletedImg"
             class="checkbox"
             v-on:click="toggleDone"
           />
-          <div class="description">
+          <div
+            :class="!task.completed ? 'description' : 'description-completed'"
+          >
             {{ task.description }}
           </div>
         </div>
       </div>
     </div>
     <div class="buttons-row">
-      <div class="urgent-container">
+      <div v-on:click="toggleUrgent" class="urgent-container">
         <img class="icon" src="../assets/urgent.svg" alt="Urgent" />
         <p class="icon-text">Urgent</p>
       </div>
@@ -37,7 +40,7 @@ import notCompleted from "../assets/checkbox-active.svg";
 import completed from "../assets/checkbox.svg";
 export default {
   name: "Card",
-  props: ["title", "tasks"],
+  props: ["title", "tasks", "id", "urgent"],
   data() {
     return {
       completedImg: completed,
@@ -47,26 +50,40 @@ export default {
   methods: {
     toggleDone: function(event) {
       const target = this.tasks.find(
-        task => task.description === event.target.nextElementSibling.innerText
+        task => task.id === parseInt(event.target.closest(".item-container").id)
       );
       target.completed = !target.completed;
+    },
+    toggleUrgent: function(event) {
+      console.log(event.target.closest(".card").id);
     }
   }
 };
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .card {
   border: 1px solid #c7d3d8;
-  padding: 0.2em;
   background-color: #fafdff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
+.card-urgent {
+  background-color: #ffe89d;
+  border: 1px solid #ffc30c;
+}
+
 .title {
   font-weight: bold;
   padding: 0.3em 1em;
+  border-bottom: 1px solid #c7d3d8;
 }
 
 .checkbox {
@@ -78,18 +95,18 @@ export default {
 
 .item-container {
   display: flex;
-
-  padding: 0.7em 1em;
+  padding: 0.7em;
 }
 
 .icon {
-  height: 1.6em;
+  height: 1.7em;
 }
 
 .buttons-row {
   display: flex;
   justify-content: space-between;
-  margin: 0.5em 1em 0.2em 1em;
+  border-top: 1px solid #c7d3d8;
+  padding: 0.5em;
 }
 
 .delete-container,
@@ -101,9 +118,14 @@ export default {
 
 .icon-text {
   font-size: 0.7em;
+  color: #356c77;
+}
+
+.description-completed {
+  font-style: italic;
+  color: #356c77;
 }
 .items-container {
-  border-top: 1px solid #c7d3d8;
-  border-bottom: 1px solid #c7d3d8;
+  padding: 0.5em 0;
 }
 </style>
