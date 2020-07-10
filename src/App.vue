@@ -2,7 +2,7 @@
   <div id="app">
     <Nav />
     <main>
-      <Form v-on:add="handleNewList" />
+      <Form v-on:add="handleNewList" v-on:delete-all="deleteAll" />
       <CardContainer :items="items" />
     </main>
   </div>
@@ -22,6 +22,9 @@ export default {
   methods: {
     handleNewList: function(list) {
       this.items.push(list);
+    },
+    deleteAll: function() {
+      this.items = [];
     }
   },
   data() {
@@ -29,14 +32,21 @@ export default {
       items: [
         {
           title: "go to store",
-          tasks:
-            "get some stuff get some stuff get some stuff get some stuff get some stuff get some stuff get some stuff"
+          tasks: [
+            { description: "get some stuff", completed: false },
+            { description: "hello", completed: false },
+            { description: "hi", completed: false }
+          ]
         },
-        { title: "go somewhere else", tasks: "get some more stuff" },
-        { title: "go somewhere else", tasks: "get some more stuff" },
-        { title: "go somewhere else", tasks: "get some more stuff" },
-        { title: "go somewhere else", tasks: "go somewhere else" },
-        { title: "go somewhere else", tasks: "get some more stuff" }
+
+        {
+          title: "go somewhere else",
+          tasks: [
+            { description: "get some stuff", completed: false },
+            { description: "hello", completed: false },
+            { description: "hi", completed: false }
+          ]
+        }
       ]
     };
   }
