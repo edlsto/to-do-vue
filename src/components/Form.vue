@@ -49,11 +49,20 @@ export default {
   },
   methods: {
     onSubmit: function() {
-      this.tasks.push({ description: this.newTask, completed: false });
+      this.tasks.push({
+        description: this.newTask,
+        completed: false,
+        id: Date.now()
+      });
       this.newTask = "";
     },
     submitList: function() {
-      this.$emit("add", { title: this.title, tasks: this.tasks });
+      this.$emit("add", {
+        title: this.title,
+        tasks: this.tasks,
+        urgent: false,
+        id: Date.now()
+      });
       this.title = "";
       this.tasks = [];
     },
