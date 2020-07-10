@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="nav-bar">
-      Check <span class="nav-bar-highlight">Yo'</span> Self
-    </h1>
+    <Nav />
     <main>
       <Form />
       <CardContainer :items="items" />
@@ -13,10 +11,12 @@
 <script>
 import Form from "./components/Form.vue";
 import CardContainer from "./components/cardContainer.vue";
+import Nav from "./components/Nav.vue";
 export default {
   components: {
     Form,
-    CardContainer
+    CardContainer,
+    Nav
   },
   name: "app",
   data() {
@@ -54,18 +54,5 @@ html {
 
 main {
   display: flex;
-}
-
-.nav-bar {
-  background: #1f1e3d;
-  color: white;
-  text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 800;
-  padding: 0.3em;
-}
-
-.nav-bar-highlight {
-  color: #ffc211;
 }
 </style>
