@@ -33,19 +33,23 @@ export default {
         {
           title: "go to store",
           tasks: [
-            { description: "get some stuff", completed: false },
-            { description: "hello", completed: false },
-            { description: "hi", completed: false }
-          ]
+            { description: "get some stuff", completed: false, id: 1 },
+            { description: "hello", completed: false, id: 2 },
+            { description: "hi", completed: false, id: 3 }
+          ],
+          id: 1,
+          urgent: false
         },
 
         {
           title: "go somewhere else",
           tasks: [
-            { description: "get some stuff", completed: false },
-            { description: "hello", completed: false },
-            { description: "hi", completed: false }
-          ]
+            { description: "get some stuff", completed: false, id: 4 },
+            { description: "hello", completed: false, id: 5 },
+            { description: "hi", completed: false, id: 6 }
+          ],
+          id: 2,
+          urgent: false
         }
       ]
     };
