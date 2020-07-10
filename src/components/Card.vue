@@ -18,11 +18,13 @@ export default {
 <style>
 .card {
   border: 1px solid #c7d3d8;
-  padding: 2em;
+  padding: 0.2em;
   background-color: #fafdff;
+  margin-bottom: 1em;
 }
 .title {
   font-weight: bold;
+  padding: 0.3em 1em;
 }
 
 .checkbox {
@@ -34,5 +36,6 @@ export default {
 .item-container {
   display: flex;
   border-top: 1px solid #c7d3d8;
+  padding: 0.7em 1em;
 }
 </style>
