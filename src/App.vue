@@ -2,7 +2,7 @@
   <div id="app">
     <Nav />
     <main>
-      <Form />
+      <Form v-on:add="handleNewList" />
       <CardContainer :items="items" />
     </main>
   </div>
@@ -19,19 +19,24 @@ export default {
     Nav
   },
   name: "app",
+  methods: {
+    handleNewList: function(list) {
+      this.items.push(list);
+    }
+  },
   data() {
     return {
       items: [
         {
           title: "go to store",
-          description:
+          tasks:
             "get some stuff get some stuff get some stuff get some stuff get some stuff get some stuff get some stuff"
         },
-        { title: "go somewhere else", description: "get some more stuff" },
-        { title: "go somewhere else", description: "get some more stuff" },
-        { title: "go somewhere else", description: "get some more stuff" },
-        { title: "go somewhere else", description: "go somewhere else" },
-        { title: "go somewhere else", description: "get some more stuff" }
+        { title: "go somewhere else", tasks: "get some more stuff" },
+        { title: "go somewhere else", tasks: "get some more stuff" },
+        { title: "go somewhere else", tasks: "get some more stuff" },
+        { title: "go somewhere else", tasks: "go somewhere else" },
+        { title: "go somewhere else", tasks: "get some more stuff" }
       ]
     };
   }
