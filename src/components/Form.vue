@@ -2,7 +2,7 @@
   <div class="form">
     <div class="form-item">
       <label class="form-label">Task Title</label>
-      <input class="form-input" type="text" />
+      <input class="form-input" type="text" v-model="title" />
     </div>
     <ul class="draft-task-list">
       <div
@@ -24,10 +24,12 @@
       <label class="form-label">Task Item</label>
       <div class="task-item-container">
         <input class="form-input" v-model="newTask" type="text" />
-        <button class="add-task-btn" v-on:click="tasks.push(newTask)"></button>
+        <button class="add-task-btn" v-on:click="onSubmit"></button>
       </div>
     </div>
-    <button class="form-btn">Make Task List</button>
+    <button class="form-btn" v-on:click="submitList">
+      Make Task List
+    </button>
     <button class="form-btn">Clear All</button>
     <div class="line"></div>
     <button class="form-btn">Filter By Urgency</button>
@@ -43,6 +45,17 @@ export default {
       tasks: [],
       newTask: ""
     };
+  },
+  methods: {
+    onSubmit: function() {
+      this.tasks.push(this.newTask);
+      this.newTask = "";
+    },
+    submitList: function() {
+      this.$emit("add", { title: this.title, tasks: this.tasks });
+      this.title = "";
+      this.tasks = [];
+    }
   }
 };
 </script>
