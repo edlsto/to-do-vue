@@ -1,10 +1,10 @@
 <template>
   <div class="form">
     <div class="form-item">
-      <label>Task Title</label> <input class="form-input" />
+      <label class="form-label">Task Title</label> <input class="form-input" />
     </div>
     <div class="form-item">
-      <label>Task Item</label> <input class="form-input" />
+      <label class="form-label">Task Item</label> <input class="form-input" />
     </div>
     <button class="form-btn">Make Task List</button>
     <button class="form-btn">Clear All</button>
@@ -51,5 +51,8 @@ export default {
   outline: none;
   height: 3em;
   padding: 0.3em;
+}
+.form-label {
+  color: #c8d3d8;
 }
 </style>
