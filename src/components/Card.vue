@@ -4,7 +4,7 @@
       <div class="title">{{ title }}</div>
       <div class="item-container">
         <img class="checkbox" src="../assets/checkbox.svg" />
-        <div class="description">{{ description }}</div>
+        <div class="description">{{ tasks }}</div>
       </div>
       <div class="buttons-row">
         <div class="urgent-container">
@@ -23,7 +23,7 @@
 <script>
 export default {
   name: "Card",
-  props: ["title", "description"]
+  props: ["title", "tasks"]
 };
 </script>
 
