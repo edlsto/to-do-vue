@@ -3,9 +3,11 @@
     <div class="card-container">
       <Card
         v-for="item in items"
-        :key="item.key"
-        :title="item.title"
-        :tasks="item.tasks"
+        v-bind:key="item.key"
+        v-bind:title="item.title"
+        v-bind:tasks="item.tasks"
+        v-bind:id="item.id"
+        v-bind:urgent="item.urgent"
       />
     </div>
   </div>
