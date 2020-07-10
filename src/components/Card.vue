@@ -9,7 +9,7 @@
           v-bind:key="index"
         >
           <img
-            :src="!completed ? completedImg : notCompletedImg"
+            :src="!task.completed ? completedImg : notCompletedImg"
             class="checkbox"
             v-on:click="toggleDone"
           />
@@ -45,8 +45,11 @@ export default {
     };
   },
   methods: {
-    toggleDone: function() {
-      this.completed = !this.completed;
+    toggleDone: function(event) {
+      const target = this.tasks.find(
+        task => task.description === event.target.nextElementSibling.innerText
+      );
+      target.completed = !target.completed;
     }
   }
 };
