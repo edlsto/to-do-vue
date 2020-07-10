@@ -5,7 +5,7 @@
         v-for="item in items"
         :key="item.key"
         :title="item.title"
-        :description="item.description"
+        :tasks="item.tasks"
       />
     </div>
   </div>
@@ -20,6 +20,9 @@ export default {
   name: "CardContainer",
   props: ["items"],
   mounted() {
+    this.resizeAllGridItems();
+  },
+  updated() {
     this.resizeAllGridItems();
   },
   methods: {
@@ -44,6 +47,7 @@ export default {
       item.style.gridRowEnd = `span ${rowSpan}`;
     },
     resizeAllGridItems() {
+      console.log("resized");
       var allItems = document.querySelectorAll(".card");
       allItems.forEach(item => this.resizeGridItem(item));
     }
