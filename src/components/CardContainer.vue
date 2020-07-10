@@ -18,17 +18,47 @@ export default {
     Card
   },
   name: "CardContainer",
-  props: ["items"]
+  props: ["items"],
+  created() {
+    this.resizeAllGridItems();
+  },
+  methods: {
+    resizeGridItem(item) {
+      let rowHeight = parseInt(
+        window
+          .getComputedStyle(document.querySelector(".card-container"))
+          .getPropertyValue("grid-auto-rows")
+      );
+      let rowGap = parseInt(
+        window
+          .getComputedStyle(document.querySelector(".card-container"))
+          .getPropertyValue("grid-row-gap")
+      );
+
+      let rowSpan = Math.ceil(
+        (item.querySelector(".content").getBoundingClientRect().height +
+          rowGap +
+          70) /
+          (rowHeight + rowGap)
+      );
+      item.style.gridRowEnd = `span 15`;
+    },
+    resizeAllGridItems() {
+      var allItems = document.querySelectorAll(".card");
+      allItems.forEach(item => this.resizeGridItem(item));
+    }
+  }
 };
 </script>
 
 <style>
 .card-container {
+  background-color: #f3f6f7;
   display: grid;
+  grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  width: 80%;
+  grid-auto-rows: 10px;
   padding: 2em;
-  grid-column-gap: 1em;
 }
 .wrapper {
   background-color: #f3f6f7;
