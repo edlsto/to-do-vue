@@ -14,9 +14,10 @@
           src="../assets/delete.svg"
           alt="Delete task"
           class="draft-task-delete-icon"
+          v-on:click="deleteDraftItem"
         />
         <li class="draft-task">
-          {{ task }}
+          {{ task.description }}
         </li>
       </div>
     </ul>
@@ -30,7 +31,7 @@
     <button class="form-btn" v-on:click="submitList">
       Make Task List
     </button>
-    <button class="form-btn">Clear All</button>
+    <button class="form-btn" @click="$emit('delete-all')">Clear All</button>
     <div class="line"></div>
     <button class="form-btn">Filter By Urgency</button>
   </div>
@@ -48,13 +49,18 @@ export default {
   },
   methods: {
     onSubmit: function() {
-      this.tasks.push(this.newTask);
+      this.tasks.push({ description: this.newTask, completed: false });
       this.newTask = "";
     },
     submitList: function() {
       this.$emit("add", { title: this.title, tasks: this.tasks });
       this.title = "";
       this.tasks = [];
+    },
+    deleteDraftItem: function(e) {
+      this.tasks = this.tasks.filter(
+        item => item !== e.target.nextElementSibling.innerText
+      );
     }
   }
 };
@@ -112,6 +118,7 @@ export default {
   outline: none;
   border: none;
   margin-left: 0.2em;
+  cursor: pointer;
 }
 .draft-task {
   list-style: none;
@@ -120,6 +127,7 @@ export default {
 .draft-task-delete-icon {
   height: 1em;
   margin-right: 0.3em;
+  cursor: pointer;
 }
 .draft-task-container {
   display: flex;
