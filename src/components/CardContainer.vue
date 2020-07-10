@@ -41,7 +41,7 @@ export default {
       let rowSpan = Math.ceil(
         (item.querySelector(".content").getBoundingClientRect().height +
           rowGap +
-          20) /
+          60) /
           (rowHeight + rowGap)
       );
       item.style.gridRowEnd = `span ${rowSpan}`;
