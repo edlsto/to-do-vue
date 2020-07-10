@@ -32,7 +32,6 @@ export default {
   border: 1px solid #c7d3d8;
   padding: 0.2em;
   background-color: #fafdff;
-  margin-bottom: 1em;
 }
 .title {
   font-weight: bold;
