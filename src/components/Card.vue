@@ -10,7 +10,7 @@
           :id="task.id"
         >
           <img
-            :src="!task.completed ? completedImg : notCompletedImg"
+            :src="task.completed ? completedImg : notCompletedImg"
             class="checkbox"
             v-on:click="toggleDone"
           />
@@ -24,10 +24,16 @@
     </div>
     <div class="buttons-row">
       <div v-on:click="toggleUrgent" class="urgent-container">
-        <img class="icon" src="../assets/urgent.svg" alt="Urgent" />
-        <p class="icon-text">Urgent</p>
+        <img
+          class="icon"
+          :src="urgent ? urgentImg : notUrgentImg"
+          alt="Urgent"
+        />
+        <p :class="urgent ? 'icon-text icon-text-urgent' : 'icon-text'">
+          Urgent
+        </p>
       </div>
-      <div class="delete-container">
+      <div v-on:click="deleteCard" class="delete-container">
         <img class="icon" src="../assets/delete.svg" alt="Delete" />
         <p class="icon-text">Delete</p>
       </div>
@@ -36,26 +42,33 @@
 </template>
 
 <script>
-import notCompleted from "../assets/checkbox-active.svg";
-import completed from "../assets/checkbox.svg";
+import completed from "../assets/checkbox-active.svg";
+import notCompleted from "../assets/checkbox.svg";
+import urgent from "../assets/urgent-active.svg";
+import notUrgent from "../assets/urgent.svg";
 export default {
   name: "Card",
   props: ["title", "tasks", "id", "urgent"],
   data() {
     return {
       completedImg: completed,
-      notCompletedImg: notCompleted
+      notCompletedImg: notCompleted,
+      urgentImg: urgent,
+      notUrgentImg: notUrgent
     };
   },
   methods: {
     toggleDone: function(event) {
-      const target = this.tasks.find(
-        task => task.id === parseInt(event.target.closest(".item-container").id)
+      this.$emit(
+        "toggle-done",
+        parseInt(event.target.closest(".item-container").id)
       );
-      target.completed = !target.completed;
     },
     toggleUrgent: function(event) {
-      console.log(event.target.closest(".card").id);
+      this.$emit("toggle-urgent", parseInt(event.target.closest(".card").id));
+    },
+    deleteCard: function(event) {
+      this.$emit("delete-card", parseInt(event.target.closest(".card").id));
     }
   }
 };
@@ -119,6 +132,10 @@ export default {
 .icon-text {
   font-size: 0.7em;
   color: #356c77;
+}
+
+.icon-text-urgent {
+  color: #b23a25;
 }
 
 .description-completed {
