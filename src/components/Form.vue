@@ -15,6 +15,7 @@
           alt="Delete task"
           class="draft-task-delete-icon"
           v-on:click="deleteDraftItem"
+          v-bind:id="task.id"
         />
         <li class="draft-task">
           {{ task.description }}
@@ -24,14 +25,22 @@
     <div class="form-item">
       <label class="form-label">Task Item</label>
       <div class="task-item-container">
-        <input class="form-input" v-model="newTask" type="text" />
-        <button class="add-task-btn" v-on:click="onSubmit"></button>
+        <input
+          class="form-input"
+          v-model="newTask"
+          type="text"
+          v-on:keyup.enter="onSubmit"
+        />
+        <button class="add-task-btn" v-on:click="onSubmit">
+          <div class="plus-1"></div>
+          <div class="plus-2"></div>
+        </button>
       </div>
     </div>
     <button class="form-btn" v-on:click="submitList">
       Make Task List
     </button>
-    <button class="form-btn" @click="$emit('delete-all')">Clear All</button>
+    <button class="form-btn" v-on:click="deleteAll">Clear All</button>
     <div class="line"></div>
     <button class="form-btn">Filter By Urgency</button>
   </div>
@@ -67,9 +76,11 @@ export default {
       this.tasks = [];
     },
     deleteDraftItem: function(e) {
-      this.tasks = this.tasks.filter(
-        item => item !== e.target.nextElementSibling.innerText
-      );
+      this.tasks = this.tasks.filter(item => item.id !== parseInt(e.target.id));
+    },
+    deleteAll: function() {
+      this.tasks = [];
+      this.title = "";
     }
   }
 };
@@ -144,5 +155,15 @@ export default {
 }
 .draft-task-list {
   margin-bottom: 1em;
+}
+.plus-1,
+.plus-2 {
+  background-color: #fff;
+  height: 1px;
+  width: 70%;
+}
+
+.plus-2 {
+  transform: rotate(90deg);
 }
 </style>
