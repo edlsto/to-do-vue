@@ -8,6 +8,7 @@
         v-bind:tasks="item.tasks"
         v-bind:id="item.id"
         v-bind:urgent="item.urgent"
+        v-on="$listeners"
       />
     </div>
   </div>
