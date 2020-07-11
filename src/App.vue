@@ -2,7 +2,7 @@
   <div id="app">
     <Nav />
     <main>
-      <Form v-on:add="handleNewList" v-on:delete-all="deleteAll" />
+      <Form v-on:add="handleNewList" />
       <CardContainer
         :items="items"
         @toggle-done="toggleDone"
@@ -27,9 +27,6 @@ export default {
   methods: {
     handleNewList: function(list) {
       this.items.push(list);
-    },
-    deleteAll: function() {
-      this.items = [];
     },
     toggleDone: function(id) {
       const targetItem = this.items.find(item =>
