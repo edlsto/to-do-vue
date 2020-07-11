@@ -3,14 +3,19 @@
     <Nav />
     <main>
       <Form v-on:add="handleNewList" v-on:delete-all="deleteAll" />
-      <CardContainer :items="items" />
+      <CardContainer
+        :items="items"
+        @toggle-done="toggleDone"
+        @toggle-urgent="toggleUrgent"
+        @delete-card="deleteCard"
+      />
     </main>
   </div>
 </template>
 
 <script>
 import Form from "./components/Form.vue";
-import CardContainer from "./components/cardContainer.vue";
+import CardContainer from "./components/CardContainer.vue";
 import Nav from "./components/Nav.vue";
 export default {
   components: {
@@ -25,6 +30,21 @@ export default {
     },
     deleteAll: function() {
       this.items = [];
+    },
+    toggleDone: function(id) {
+      const targetItem = this.items.find(item =>
+        item.tasks.some(task => task.id === id)
+      );
+      const targetTask = targetItem.tasks.find(task => task.id === id);
+      targetTask.completed = !targetTask.completed;
+    },
+    toggleUrgent: function(id) {
+      const targetItem = this.items.find(item => item.id === id);
+      targetItem.urgent = !targetItem.urgent;
+    },
+    deleteCard: function(id) {
+      console.log(id);
+      this.items = this.items.filter(task => task.id !== id);
     }
   },
   data() {
