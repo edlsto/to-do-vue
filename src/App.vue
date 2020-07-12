@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Nav />
-    <Form v-on:add="handleNewList" @filter-urgent="filterUrgent" />
+    <Form
+      v-on:add="handleNewList"
+      @filter-urgent="filterUrgent"
+      :filter="filter"
+    />
     <CardContainer
       :items="filteredItems"
       @toggle-done="toggleDone"
@@ -92,6 +96,7 @@ export default {
   font-family: "Open Sans", sans-serif;
 }
 
+#app,
 body,
 html {
   height: 100%;
