@@ -52,7 +52,10 @@
       Clear All
     </button>
     <div class="line"></div>
-    <button class="form-btn" v-on:click="filterUrgent">
+    <button
+      :class="!filter ? 'form-btn' : 'form-btn form-btn-filter'"
+      v-on:click="filterUrgent"
+    >
       Filter By Urgency
     </button>
   </div>
@@ -68,6 +71,7 @@ export default {
       newTask: ""
     };
   },
+  props: ["filter"],
   methods: {
     onSubmit: function() {
       this.tasks.push({
@@ -104,9 +108,6 @@ export default {
 <style>
 .form {
   background: #587a8a;
-  flex: 0 1 20%;
-  height: 100vh;
-  display: block;
   padding: 2em;
   grid-area: dashboard;
 }
@@ -134,6 +135,10 @@ export default {
 .form-btn:disabled {
   background-color: #a5a5b9;
   cursor: default;
+}
+
+.form-btn-filter {
+  background-color: #ef4a23;
 }
 .form-input {
   display: block;
