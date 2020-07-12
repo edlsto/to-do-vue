@@ -1,5 +1,11 @@
 <template>
   <div class="wrapper">
+    <div class="no-to-do" v-if="items.length === 0">
+      <h1 class="no-to-do-text">
+        Add a to-do!
+      </h1>
+    </div>
+
     <div class="card-container">
       <Card
         v-for="item in items"
@@ -71,5 +77,11 @@ export default {
 .wrapper {
   background-color: #f3f6f7;
   width: 100%;
+}
+.no-to-do {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>
