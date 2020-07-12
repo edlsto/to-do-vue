@@ -66,6 +66,7 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-rows: 10px;
   padding: 2em;
+  grid-area: cards;
 }
 .wrapper {
   background-color: #f3f6f7;
