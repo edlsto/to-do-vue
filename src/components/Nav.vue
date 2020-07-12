@@ -16,6 +16,8 @@ export default {
   font-family: "Open Sans", sans-serif;
   font-weight: 800;
   padding: 0.3em;
+  grid-area: nav;
+  font-size: 2.5em;
 }
 
 .nav-bar-highlight {
