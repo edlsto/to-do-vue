@@ -37,12 +37,24 @@
         </button>
       </div>
     </div>
-    <button class="form-btn" v-on:click="submitList">
+    <button
+      class="form-btn"
+      v-on:click="submitList"
+      :disabled="tasks.length === 0 || title.length === 0"
+    >
       Make Task List
     </button>
-    <button class="form-btn" v-on:click="deleteAll">Clear All</button>
+    <button
+      class="form-btn"
+      v-on:click="deleteAll"
+      :disabled="title.length === 0 && tasks.length === 0"
+    >
+      Clear All
+    </button>
     <div class="line"></div>
-    <button class="form-btn">Filter By Urgency</button>
+    <button class="form-btn" v-on:click="filterUrgent">
+      Filter By Urgency
+    </button>
   </div>
 </template>
 
@@ -81,6 +93,9 @@ export default {
     deleteAll: function() {
       this.tasks = [];
       this.title = "";
+    },
+    filterUrgent: function() {
+      this.$emit("filter-urgent");
     }
   }
 };
@@ -93,6 +108,7 @@ export default {
   height: 100vh;
   display: block;
   padding: 2em;
+  grid-area: dashboard;
 }
 .form-item {
   margin-bottom: 1em;
@@ -113,6 +129,11 @@ export default {
 
 .form-btn:first-of-type {
   margin-bottom: 1em;
+}
+
+.form-btn:disabled {
+  background-color: #a5a5b9;
+  cursor: default;
 }
 .form-input {
   display: block;
@@ -139,6 +160,7 @@ export default {
   border: none;
   margin-left: 0.2em;
   cursor: pointer;
+  padding-left: 0.6em;
 }
 .draft-task {
   list-style: none;
