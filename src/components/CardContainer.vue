@@ -5,10 +5,15 @@
         Add a to-do!
       </h1>
     </div>
+    <div class="no-to-do" v-if="filteredItems.length === 0 && items.length > 0">
+      <h1 class="no-to-do-text">
+        No matching lists
+      </h1>
+    </div>
 
-    <div class="card-container">
+    <div class="card-container" v-if="items.length > 0">
       <Card
-        v-for="item in items"
+        v-for="item in filteredItems"
         v-bind:key="item.key"
         v-bind:title="item.title"
         v-bind:tasks="item.tasks"
@@ -27,7 +32,7 @@ export default {
     Card
   },
   name: "CardContainer",
-  props: ["items"],
+  props: ["items", "filteredItems"],
   mounted() {
     this.resizeAllGridItems();
   },
@@ -56,7 +61,6 @@ export default {
       item.style.gridRowEnd = `span ${rowSpan}`;
     },
     resizeAllGridItems() {
-      console.log("resized");
       var allItems = document.querySelectorAll(".card");
       allItems.forEach(item => this.resizeGridItem(item));
     }
@@ -82,6 +86,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 </style>
