@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <Nav />
+    <Nav @search-input="searchInputHandler" />
     <Form
       v-on:add="handleNewList"
       @filter-urgent="filterUrgent"
       :filter="filter"
     />
     <CardContainer
-      :items="filteredItems"
+      :items="items"
+      :filteredItems="filteredItems"
       @toggle-done="toggleDone"
       @toggle-urgent="toggleUrgent"
       @delete-card="deleteCard"
@@ -46,6 +47,9 @@ export default {
     },
     filterUrgent: function() {
       this.filter = !this.filter;
+    },
+    searchInputHandler: function(input) {
+      this.searchInput = input;
     }
   },
   data() {
@@ -73,15 +77,27 @@ export default {
           urgent: true
         }
       ],
-      filter: false
+      filter: false,
+      searchInput: ""
     };
   },
   computed: {
     filteredItems() {
+      let filteredList = this.items.slice();
+      if (this.searchInput) {
+        filteredList = filteredList.filter(item => {
+          let match =
+            item.title.includes(this.searchInput) ||
+            item.tasks.some(task => {
+              return task.description.includes(this.searchInput);
+            });
+          return match;
+        });
+      }
       if (this.filter) {
-        return this.items.filter(item => item.urgent);
+        return filteredList.filter(item => item.urgent);
       } else {
-        return this.items;
+        return filteredList;
       }
     }
   }
