@@ -1,15 +1,13 @@
 <template>
   <div id="app">
     <Nav />
-    <main>
-      <Form v-on:add="handleNewList" />
-      <CardContainer
-        :items="items"
-        @toggle-done="toggleDone"
-        @toggle-urgent="toggleUrgent"
-        @delete-card="deleteCard"
-      />
-    </main>
+    <Form v-on:add="handleNewList" @filter-urgent="filterUrgent" />
+    <CardContainer
+      :items="filteredItems"
+      @toggle-done="toggleDone"
+      @toggle-urgent="toggleUrgent"
+      @delete-card="deleteCard"
+    />
   </div>
 </template>
 
@@ -40,8 +38,10 @@ export default {
       targetItem.urgent = !targetItem.urgent;
     },
     deleteCard: function(id) {
-      console.log(id);
       this.items = this.items.filter(task => task.id !== id);
+    },
+    filterUrgent: function() {
+      this.filter = !this.filter;
     }
   },
   data() {
@@ -66,10 +66,20 @@ export default {
             { description: "hi", completed: false, id: 6 }
           ],
           id: 2,
-          urgent: false
+          urgent: true
         }
-      ]
+      ],
+      filter: false
     };
+  },
+  computed: {
+    filteredItems() {
+      if (this.filter) {
+        return this.items.filter(item => item.urgent);
+      } else {
+        return this.items;
+      }
+    }
   }
 };
 </script>
@@ -88,7 +98,13 @@ html {
   width: 100%;
 }
 
-main {
-  display: flex;
+#app {
+  display: grid;
+  font-family: "Open Sans", sans-serif;
+  grid-template-areas:
+    "nav nav"
+    "dashboard cards";
+  grid-template-columns: 23em 1fr;
+  grid-template-rows: 75px 1fr;
 }
 </style>
