@@ -7,7 +7,7 @@
           class="item-container"
           v-for="(task, index) in tasks"
           v-bind:key="index"
-          :id="task.id"
+          v-bind:id="task.id"
         >
           <img
             :src="task.completed ? completedImg : notCompletedImg"
