@@ -53,7 +53,7 @@
     </button>
     <div class="line"></div>
     <button
-      :class="!filter ? 'form-btn' : 'form-btn form-btn-filter'"
+      v-bind:class="[!filter ? '' : 'form-btn-filter', 'form-btn']"
       v-on:click="filterUrgent"
     >
       Filter By Urgency
