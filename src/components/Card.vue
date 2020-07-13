@@ -1,5 +1,5 @@
 <template>
-  <div :class="!urgent ? 'card' : 'card card-urgent'" :id="id">
+  <div :class="[!urgent ? '' : 'card-urgent', 'card']" :id="id">
     <div class="content">
       <div class="title">{{ title }}</div>
       <div class="items-container">
@@ -15,7 +15,7 @@
             v-on:click="toggleDone"
           />
           <div
-            :class="!task.completed ? 'description' : 'description-completed'"
+            :class="[!task.completed ? 'description' : 'description-completed']"
           >
             {{ task.description }}
           </div>
@@ -29,7 +29,7 @@
           :src="urgent ? urgentImg : notUrgentImg"
           alt="Urgent"
         />
-        <p :class="urgent ? 'icon-text icon-text-urgent' : 'icon-text'">
+        <p :class="[urgent ? 'icon-text-urgent' : '', 'icon-text']">
           Urgent
         </p>
       </div>
